@@ -71,7 +71,7 @@ public class GitRepo implements Closeable {
      */
     public void gitDir(File dir, Object... args) throws IOException, InterruptedException {
         List<String> cmds = new ArrayList<>();
-        cmds.add("git");
+        cmds.addAll(Arrays.asList("git", "-c", "user.name='ATH'", "-c", "user.email='ath@example.org'"));
         for (Object a : args) {
             if (a != null)
                 cmds.add(a.toString());
