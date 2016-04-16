@@ -31,9 +31,6 @@ import org.jenkinsci.test.acceptance.po.PostBuildStep;
 
 /**
  * Groovy post build step. Use {@code form-element-path} plugin.
- * Assumes "path" form element availability.
- * Paths are usually available when using the default Jenkins controller.
- * (Available thanks to pre-installed form-element-path plugin.)
  */
 @Describable("Groovy Postbuild")
 public final class GroovyPostBuildStep extends AbstractStep implements PostBuildStep {
