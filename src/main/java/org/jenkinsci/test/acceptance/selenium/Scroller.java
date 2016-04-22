@@ -78,7 +78,8 @@ public class Scroller extends AbstractWebDriverEventListener {
     }
 
     private void scrollIntoView(WebElement e, WebDriver driver) {
-        int eYCoord = e.getLocation().getY();
-        ((JavascriptExecutor)driver).executeScript(scrollJs, eYCoord);
+        // int eYCoord = e.getLocation().getY();
+        //((JavascriptExecutor)driver).executeScript(scrollJs, eYCoord);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", e);
     }
 }
