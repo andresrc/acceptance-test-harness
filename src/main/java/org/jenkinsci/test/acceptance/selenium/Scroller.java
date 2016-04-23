@@ -2,6 +2,7 @@ package org.jenkinsci.test.acceptance.selenium;
 
 import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
@@ -80,6 +81,10 @@ public class Scroller extends AbstractWebDriverEventListener {
     private void scrollIntoView(WebElement e, WebDriver driver) {
         // int eYCoord = e.getLocation().getY();
         //((JavascriptExecutor)driver).executeScript(scrollJs, eYCoord);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", e);
+        final Point p = e.getLocation();
+        final int x = p.getX();
+        final int y = p.getY();
+        final String script = String.format("window.scrollTo(%d, %d);", x - 200, y - 200);
+        ((JavascriptExecutor)driver).executeScript(script);
     }
 }

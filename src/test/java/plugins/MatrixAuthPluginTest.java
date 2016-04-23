@@ -135,4 +135,27 @@ public class MatrixAuthPluginTest extends AbstractJUnitTest {
         jenkins.open();
         j.open();
     }
+
+    @Test
+    public void job() throws Exception {
+        GlobalSecurityConfig sc = new GlobalSecurityConfig(jenkins);
+        sc.open();
+        {
+            MockSecurityRealm ms = sc.useRealm(MockSecurityRealm.class);
+            ms.configure("alice");
+
+            MatrixAuthorizationStrategy mas = sc.useAuthorizationStrategy(MatrixAuthorizationStrategy.class);
+
+            MatrixRow a = mas.addUser("alice");
+            a.developer();
+        }
+        sc.save();
+
+        jenkins.login().doLogin("alice");
+        // just create the job without configuring
+        FreeStyleJob j = jenkins.jobs.create();
+        jenkins.open();
+        j.open();
+    }
+
 }
